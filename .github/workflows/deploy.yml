@@ -1,4 +1,4 @@
-name: 🚀 Deploy Venados Atalaya to Hostinger (Subcarpeta)
+name: 🚀 Deploy Venados Atalaya to Hostinger (Dominio mhegasdev.com.mx)
 
 on:
   push:
@@ -24,7 +24,10 @@ jobs:
       - name: 🏗️ Generar build de Astro
         run: npm run build
 
-      - name: 📤 Subir vía FTP a Hostinger
+      - name: 🔍 Verificar contenido de dist
+        run: ls -R ./dist
+
+      - name: 📤 Subir vía FTP a Hostinger (Dominio mhegasdev.com.mx)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -33,6 +36,5 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./dist/
-          server-dir: domains/mhegasdev.com.mx/public_html/venados-atalaya/
+          server-dir: venados-atalaya/
           log-level: verbose
-          dry-run: false
