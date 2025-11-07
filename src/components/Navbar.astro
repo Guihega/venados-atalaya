@@ -1,0 +1,102 @@
+<nav
+  id="navbar"
+  role="navigation"
+  class="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-primary via-dark to-accent/80 backdrop-blur-lg shadow-lg transition-all duration-500"
+>
+  <div
+    class="max-w-[92rem] mx-auto px-6 lg:px-12 py-4 flex items-center justify-between"
+  >
+    <!-- 🦌 LOGO -->
+    <a
+      href="#inicio"
+      class="flex items-center gap-3 select-none focus:outline-none"
+      aria-label="Ir al inicio"
+    >
+      <img
+        src="/img/logo.png"
+        alt="Logo Venados Atalaya"
+        class="h-11 w-11 rounded-full border border-secondary shadow-md hover:scale-105 transition-transform duration-300"
+      />
+      <span
+        class="text-xl font-extrabold tracking-widest text-light drop-shadow-sm"
+      >
+        VENADOS <span class="text-secondary">ATALAYA</span>
+      </span>
+    </a>
+
+    <!-- 🔗 LINKS (Desktop) -->
+    <ul
+      class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold uppercase tracking-wide"
+    >
+      <li><a href="#inicio" class="nav-link text-light/85 hover:text-secondary transition">Inicio</a></li>
+      <li><a href="#programas" class="nav-link text-light/85 hover:text-secondary transition">Programas</a></li>
+      <li><a href="#metodologia" class="nav-link text-light/85 hover:text-secondary transition">Metodología</a></li>
+      <li><a href="#entrenadores" class="nav-link text-light/85 hover:text-secondary transition">Entrenadores</a></li>
+      <li><a href="#logros" class="nav-link text-light/85 hover:text-secondary transition">Logros</a></li>
+      <li><a href="#eventos" class="nav-link text-light/85 hover:text-secondary transition">Eventos</a></li>
+      <li><a href="#proximos" class="nav-link text-light/85 hover:text-secondary transition">Próximos</a></li>
+      <li><a href="#galeria" class="nav-link text-light/85 hover:text-secondary transition">Galería</a></li>
+      <li><a href="#contacto" class="nav-link text-light/85 hover:text-secondary transition">Contacto</a></li>
+    </ul>
+
+    <!-- 🎯 CTA Desktop -->
+    <a
+      href="#inscripcion"
+      class="hidden sm:inline-block ml-4 px-5 py-2 rounded-full bg-[var(--color-secondary)] text-dark font-semibold shadow-md hover:shadow-lg hover:scale-105 transition"
+    >
+      Inscríbete
+    </a>
+
+    <!-- 📱 Mobile menu button -->
+    <button
+      id="menu-btn"
+      class="lg:hidden flex flex-col justify-center items-center gap-[5px] focus:outline-none group"
+      aria-label="Abrir menú"
+    >
+      <span class="w-7 h-[2px] bg-light group-hover:bg-secondary transition-all duration-300"></span>
+      <span class="w-7 h-[2px] bg-light group-hover:bg-secondary transition-all duration-300"></span>
+      <span class="w-7 h-[2px] bg-light group-hover:bg-secondary transition-all duration-300"></span>
+    </button>
+  </div>
+
+  <!-- 📱 MENÚ MOBILE -->
+  <div
+    id="mobile-menu"
+    class="absolute top-full left-0 w-full bg-dark/95 backdrop-blur-md shadow-xl flex flex-col items-center py-8 gap-5 text-light text-lg uppercase font-semibold opacity-0 pointer-events-none transition-all duration-500"
+  >
+    <a href="#inicio" class="hover:text-secondary transition">Inicio</a>
+    <a href="#programas" class="hover:text-secondary transition">Programas</a>
+    <a href="#metodologia" class="hover:text-secondary transition">Metodología</a>
+    <a href="#entrenadores" class="hover:text-secondary transition">Entrenadores</a>
+    <a href="#logros" class="hover:text-secondary transition">Logros</a>
+    <a href="#eventos" class="hover:text-secondary transition">Eventos</a>
+    <a href="#proximos" class="hover:text-secondary transition">Próximos</a>
+    <a href="#galeria" class="hover:text-secondary transition">Galería</a>
+    <a href="#contacto" class="hover:text-secondary transition">Contacto</a>
+    <a
+      href="#inscripcion"
+      class="btn-inscribete mt-2 px-6 py-2 rounded-full bg-[var(--color-secondary)] text-dark font-bold shadow-md hover:shadow-lg transition"
+    >
+      Inscríbete
+    </a>
+  </div>
+
+  <!-- 🧠 Script -->
+  <script is:inline>
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      navbar.classList.toggle("bg-dark/95", window.scrollY > 50);
+      navbar.classList.toggle("shadow-xl", window.scrollY > 50);
+    });
+
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn.addEventListener("click", () => {
+      const open = mobileMenu.classList.contains("opacity-100");
+      mobileMenu.classList.toggle("opacity-100", !open);
+      mobileMenu.classList.toggle("pointer-events-auto", !open);
+      mobileMenu.classList.toggle("opacity-0", open);
+      mobileMenu.classList.toggle("pointer-events-none", open);
+    });
+  </script>
+</nav>

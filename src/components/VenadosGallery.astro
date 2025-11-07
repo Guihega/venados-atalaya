@@ -1,0 +1,184 @@
+---
+/**
+ * 📸 Galería Fotográfica Venados Atalaya
+ * - Masonry layout ultra rápido
+ * - Lightbox interno accesible
+ * - Lazy load + preload inteligente (al abrir)
+ * - Animación fade + slide
+ * - Sin dependencias externas
+ */
+---
+
+<section id="galeria" class="relative py-20 bg-[var(--color-dark)] text-[var(--color-light)] overflow-hidden">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wide">
+      GALERÍA <span class="text-[var(--color-secondary)]">FOTOGRÁFICA</span>
+    </h2>
+    <div class="flex justify-center mt-4 mb-8">
+      <div class="w-32 h-[3px] bg-[var(--color-accent)] rounded-full shadow-[0_0_15px_rgba(255,215,0,0.6)]"></div>
+    </div>
+    <p class="text-light/80 max-w-2xl mx-auto mt-3">
+      Momentos que reflejan el esfuerzo, la pasión y el espíritu de <strong>Venados Atalaya</strong>.
+    </p>
+  </div>
+
+  <!-- 🖼️ GRID -->
+<div
+  id="va-gallery"
+  class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+>
+  {Array.from({ length: 6 }).map((_, i) => (
+    <a
+      href={`/img/galeria/${i + 1}-thumb.webp`}
+      class="va-img group block overflow-hidden rounded-xl relative aspect-[4/3]"
+      data-caption={`Imagen ${i + 1}`}
+      target="_blank"
+    >
+      <img
+        src={`/img/galeria/${i + 1}-thumb.webp`}
+        data-full={`/img/galeria/${i + 1}-thumb.webp`}
+        alt={`Imagen ${i + 1} Venados Atalaya`}
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 rounded-xl"
+      />
+      <div
+        class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+      >
+        <span class="text-white text-sm font-medium tracking-wide">Ver imagen</span>
+      </div>
+    </a>
+  ))}
+</div>
+
+  <!-- 🪩 LIGHTBOX -->
+  <div
+    id="va-lightbox"
+    class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50 backdrop-blur-sm"
+  >
+    <button
+      id="va-close"
+      class="absolute top-6 right-6 text-white text-3xl hover:text-[var(--color-accent)] transition"
+      aria-label="Cerrar galería"
+    >
+      ×
+    </button>
+    <img
+      id="va-lightbox-img"
+      src=""
+      alt=""
+      class="max-h-[85vh] max-w-[90vw] rounded-lg shadow-2xl opacity-0 transition-opacity duration-300"
+    />
+    <p
+      id="va-caption"
+      class="absolute bottom-8 text-center w-full text-white/80 text-sm"
+    ></p>
+    <button
+      id="va-prev"
+      class="absolute left-5 text-white text-3xl hover:text-[var(--color-accent)] transition"
+      aria-label="Imagen anterior"
+    >
+      ‹
+    </button>
+    <button
+      id="va-next"
+      class="absolute right-5 text-white text-3xl hover:text-[var(--color-accent)] transition"
+      aria-label="Imagen siguiente"
+    >
+      ›
+    </button>
+  </div>
+
+  <!-- ✨ SCRIPT -->
+  <script is:inline>
+    (() => {
+      const gallery = document.querySelectorAll(".va-img");
+      const lightbox = document.getElementById("va-lightbox");
+      const img = document.getElementById("va-lightbox-img");
+      const caption = document.getElementById("va-caption");
+      const btnPrev = document.getElementById("va-prev");
+      const btnNext = document.getElementById("va-next");
+      const btnClose = document.getElementById("va-close");
+      let index = 0;
+
+      const preload = (src) => {
+        const i = new Image();
+        i.src = src;
+      };
+
+      const open = (i) => {
+        const el = gallery[i].querySelector("img");
+        const src = el.dataset.full || el.src;
+        img.src = src;
+        img.alt = el.alt;
+        caption.textContent = gallery[i].dataset.caption || "";
+        index = i;
+        lightbox.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        requestAnimationFrame(() => img.classList.add("opacity-100"));
+
+        // Preload siguiente y anterior
+        preload(gallery[(i + 1) % gallery.length].querySelector("img").dataset.full);
+        preload(gallery[(i - 1 + gallery.length) % gallery.length].querySelector("img").dataset.full);
+      };
+
+      const close = () => {
+        img.classList.remove("opacity-100");
+        setTimeout(() => {
+          lightbox.classList.add("hidden");
+          document.body.style.overflow = "";
+        }, 250);
+      };
+
+      const show = (offset) => {
+        index = (index + offset + gallery.length) % gallery.length;
+        open(index);
+      };
+
+      gallery.forEach((el, i) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          open(i);
+        });
+      });
+
+      btnClose.addEventListener("click", close);
+      btnPrev.addEventListener("click", () => show(-1));
+      btnNext.addEventListener("click", () => show(1));
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) close();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (lightbox.classList.contains("hidden")) return;
+        if (e.key === "Escape") close();
+        if (e.key === "ArrowLeft") show(-1);
+        if (e.key === "ArrowRight") show(1);
+      });
+
+      // Fade-in progresivo
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("opacity-100", "translate-y-0");
+              entry.target.classList.remove("opacity-0", "translate-y-4");
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      gallery.forEach((item) => {
+        item.classList.add(
+          "opacity-0",
+          "translate-y-4",
+          "transition-all",
+          "duration-700",
+          "ease-out"
+        );
+        observer.observe(item);
+      });
+    })();
+  </script>
+</section>

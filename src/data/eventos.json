@@ -1,0 +1,38 @@
+[
+  {
+    "id": "copa-sur",
+    "date": "2025-03-15",
+    "title": "Copa Regional del Sur",
+    "venue": "Estadio Tehuacán",
+    "time": "18:00",
+    "home": "Venados Atalaya",
+    "away": "Lobos del Sur",
+    "score": "3–1",
+    "cover": "/img/eventos/copa-sur.jpg",
+    "note": "Gran encuentro clasificatorio con dominio táctico de Venados Atalaya."
+  },
+  {
+    "id": "liga-estatal",
+    "date": "2025-06-17",
+    "title": "Liga Estatal 2025",
+    "venue": "Huixcolotla, Puebla",
+    "time": "17:30",
+    "home": "Venados Atalaya",
+    "away": "Atlético Centro",
+    "score": "",
+    "cover": "/img/eventos/liga-estatal.jpg",
+    "note": "Partido de preparación con rotación táctica."
+  },
+  {
+    "id": "torneo-nacional",
+    "date": "2025-04-12",
+    "title": "Torneo Nacional Juvenil",
+    "venue": "Puebla Capital",
+    "time": "16:00",
+    "home": "Venados Atalaya sub-17",
+    "away": "Academia Norte",
+    "score": "",
+    "cover": "/img/eventos/torneo-juvenil.jpg",
+    "note": "Participación destacada en zona centro."
+  }
+]

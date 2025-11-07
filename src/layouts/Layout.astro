@@ -1,22 +1,71 @@
+---
+import Footer from "../components/Footer.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import "../styles/global.css";
+
+/**
+ * Props opcionales (si no se pasan, usa valores por defecto)
+ */
+const {
+  title = "Venados Atalaya — Academia Formativa de Fútbol",
+  description = "Formando campeones, no jugadores. Academia de fútbol en Tehuacán, Puebla.",
+} = Astro.props;
+---
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- 🏷️ Título y descripción -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Venados Atalaya" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- 🌐 Open Graph / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/img/og-cover.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://venadosatalaya.mx" />
+
+    <!-- 🐦 Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/img/og-cover.jpg" />
+
+    <!-- 🔤 Fuentes -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Teko:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- 🧱 Favicon -->
+    <link rel="icon" type="image/png" href="/img/logo.png" />
+  </head>
+
+  <body>
+    <slot />
+    <Footer />
+    <ThemeToggle />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

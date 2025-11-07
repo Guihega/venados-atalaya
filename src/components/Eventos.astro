@@ -1,0 +1,333 @@
+<section id="calendario" class="relative py-24 bg-[var(--color-dark)] text-[var(--color-light)] overflow-hidden" aria-labelledby="titulo-calendario">
+  <!-- 🌫️ Degradado superior -->
+  <div class="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/50 to-transparent"></div>
+
+  <div class="text-center mb-12">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wide">
+      CALENDARIO <span class="text-[var(--color-secondary)]">DEPORTIVO</span>
+    </h2>
+    <div class="flex justify-center mt-4 mb-8">
+      <div class="w-32 h-[3px] bg-[var(--color-accent)] rounded-full shadow-[0_0_15px_rgba(255,215,0,0.6)]"></div>
+    </div>
+    <p class="text-light/80 max-w-2xl mx-auto mt-3">
+      Selecciona un día del calendario, revisa los encuentros programados y consulta el detalle.
+    </p>
+  </div>
+
+  <div id="va-cal-root" class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 px-4 sm:px-6">
+    <!-- 🗓️ Calendario -->
+    <div class="rounded-2xl border border-white/10 bg-black/30 p-4 sm:p-6">
+      <div class="flex items-center justify-between mb-4">
+        <button id="va-prev" class="w-9 h-9 rounded-md bg-white/10 hover:bg-white/15 grid place-content-center" aria-label="Mes anterior">‹</button>
+        <h3 id="va-month-label" class="text-xl font-bold"></h3>
+        <button id="va-next" class="w-9 h-9 rounded-md bg-white/10 hover:bg-white/15 grid place-content-center" aria-label="Mes siguiente">›</button>
+      </div>
+      <div id="va-calendar" role="grid" class="grid grid-cols-7 gap-2 text-center select-none"></div>
+    </div>
+
+    <!-- 📋 Eventos del día -->
+    <div class="rounded-2xl border border-white/10 bg-black/30 p-4 sm:p-6">
+      <h3 class="text-lg font-semibold mb-4">🗓️ Eventos del Día</h3>
+      <div id="va-lista" class="space-y-3 text-sm text-white/90" aria-live="polite">
+        Selecciona una fecha del calendario para ver los eventos disponibles.
+      </div>
+    </div>
+  </div>
+
+  <!-- 📄 Detalle -->
+  <div id="va-detalle" class="max-w-5xl mx-auto mt-10 bg-[#063529]/60 rounded-2xl p-8 hidden">
+    <div class="grid lg:grid-cols-[42%,1fr] gap-6 items-start">
+      <div>
+        <img id="va-cover" src="" alt="" class="w-full h-64 object-cover rounded-lg bg-black/20" />
+      </div>
+      <div>
+        <h4 id="va-title" class="text-2xl md:text-3xl font-extrabold text-[var(--color-accent)]"></h4>
+        <p id="va-meta" class="text-white/80 mt-2 text-sm"></p>
+        <p id="va-desc" class="text-white/90 mt-4"></p>
+        <div id="va-score" class="mt-5 inline-block px-4 py-1 rounded-md bg-white/10 border border-white/10 text-[var(--color-accent)] font-bold"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Datos JSON -->
+  <script type="application/json" id="va-events-data">
+[
+  {
+    "id": "copa-sur",
+    "date": "2025-03-15",
+    "title": "Copa Regional del Sur",
+    "venue": "Estadio Tehuacán",
+    "time": "18:00",
+    "home": "Venados Atalaya",
+    "away": "Lobos del Sur",
+    "score": "3–1",
+    "cover": "/img/eventos/copa-sur.jpg",
+    "note": "Gran encuentro clasificatorio con dominio táctico de Venados Atalaya."
+  },
+  {
+    "id": "liga-estatal",
+    "date": "2025-06-17",
+    "title": "Liga Estatal 2025",
+    "venue": "Huixcolotla, Puebla",
+    "time": "17:30",
+    "home": "Venados Atalaya",
+    "away": "Atlético Centro",
+    "score": "",
+    "cover": "/img/eventos/liga-estatal.jpg",
+    "note": "Partido de preparación con rotación táctica."
+  },
+  {
+    "id": "torneo-nacional",
+    "date": "2025-04-12",
+    "title": "Torneo Nacional Juvenil",
+    "venue": "Puebla Capital",
+    "time": "16:00",
+    "home": "Venados Atalaya sub-17",
+    "away": "Academia Norte",
+    "score": "",
+    "cover": "/img/eventos/torneo-juvenil.jpg",
+    "note": "Participación destacada en zona centro."
+  },
+  {
+    "id": "amistoso-noviembre-a",
+    "date": "2025-11-09",
+    "title": "Amistoso Matutino Sub-15",
+    "venue": "Campo Venados Atalaya",
+    "time": "09:00",
+    "home": "Venados Sub-15",
+    "away": "Academia Los Halcones",
+    "score": "2–1",
+    "cover": "/img/eventos/amistoso-matutino.jpg",
+    "note": "Encuentro amistoso con la categoría sub-15, excelente desempeño defensivo."
+  },
+  {
+    "id": "amistoso-noviembre-b",
+    "date": "2025-11-09",
+    "title": "Amistoso Interescuadras",
+    "venue": "Campo 2 Atalaya",
+    "time": "12:00",
+    "home": "Venados Atalaya A",
+    "away": "Venados Atalaya B",
+    "score": "",
+    "cover": "/img/eventos/interescuadras.jpg",
+    "note": "Juego de entrenamiento interno entre equipos principales."
+  },
+  {
+    "id": "amistoso-noviembre-c",
+    "date": "2025-11-09",
+    "title": "Partido Amistoso de Noviembre",
+    "venue": "Campo Venados Atalaya",
+    "time": "17:00",
+    "home": "Venados Atalaya",
+    "away": "Águilas de Tehuacán",
+    "score": "",
+    "cover": "/img/eventos/amistoso-noviembre.jpg",
+    "note": "Amistoso preparatorio antes del cierre de temporada."
+  }
+]
+  </script>
+
+  <!-- ✅ Lógica -->
+  <script is:inline>
+    (() => {
+      const dataTag = document.getElementById("va-events-data");
+      let EVENTS = [];
+
+      try {
+        EVENTS = JSON.parse(dataTag.textContent || "[]");
+        if (!Array.isArray(EVENTS)) EVENTS = [];
+        console.log(`✅ ${EVENTS.length} eventos cargados`);
+      } catch (err) {
+        console.error("❌ Error al parsear eventos:", err);
+        EVENTS = [];
+      }
+
+      const MONTHS = [
+        "Enero","Febrero","Marzo","Abril","Mayo","Junio",
+        "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
+      ];
+      const pad = (n) => (n < 10 ? `0${n}` : `${n}`);
+      const fmt = (y,m,d) => `${y}-${pad(m+1)}-${pad(d)}`;
+      const sameDay = (a,b) =>
+        a.getFullYear()===b.getFullYear() &&
+        a.getMonth()===b.getMonth() &&
+        a.getDate()===b.getDate();
+
+      const today = new Date();
+      const state = {
+        year: today.getFullYear(),
+        month: today.getMonth(),
+        selected: null,
+        selectedEventId: null,
+      };
+
+      const cal = document.getElementById("va-calendar");
+      const monthLabel = document.getElementById("va-month-label");
+      const btnPrev = document.getElementById("va-prev");
+      const btnNext = document.getElementById("va-next");
+      const list = document.getElementById("va-lista");
+      const detail = document.getElementById("va-detalle");
+      const cover = document.getElementById("va-cover");
+      const title = document.getElementById("va-title");
+      const meta = document.getElementById("va-meta");
+      const desc = document.getElementById("va-desc");
+      const score = document.getElementById("va-score");
+
+      /** Renderiza cabeceras una sola vez */
+      function renderWeekHeaders() {
+        const headers = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
+        const frag = document.createDocumentFragment();
+        headers.forEach((h)=>{
+          const el=document.createElement("div");
+          el.textContent=h;
+          el.className="text-[11px] md:text-xs uppercase tracking-wide text-white/60 mb-1";
+          frag.appendChild(el);
+        });
+        cal.innerHTML="";
+        cal.appendChild(frag);
+      }
+
+      const eventsFor=(iso)=>EVENTS.filter(e=>e.date===iso);
+
+      /** Renderiza solo los días del mes actual */
+      function renderCalendarDays(){
+        const oldBtns=cal.querySelectorAll("button");
+        oldBtns.forEach(b=>b.remove());
+
+        monthLabel.textContent=`${MONTHS[state.month]} ${state.year}`;
+
+        const first=new Date(state.year,state.month,1);
+        const last=new Date(state.year,state.month+1,0);
+        const startPad=first.getDay();
+        const total=last.getDate();
+
+        for(let i=0;i<startPad;i++){
+          const p=document.createElement("div");
+          p.className="h-10 md:h-12";
+          cal.appendChild(p);
+        }
+
+        for(let d=1;d<=total;d++){
+          const iso=fmt(state.year,state.month,d);
+          const evts=eventsFor(iso);
+
+          const btn=document.createElement("button");
+          btn.type="button";
+          btn.setAttribute("data-date",iso);
+          btn.setAttribute("role","gridcell");
+          btn.title=evts.map(e=>e.title).join(" • ");
+          btn.ariaLabel=`Día ${d}${evts.length?`, ${evts.length} evento(s)`:""}`;
+
+          btn.className=[
+            "relative h-10 md:h-12 rounded-md transition focus:outline-none",
+            evts.length
+              ? "bg-[var(--color-accent)]/20 hover:bg-[var(--color-accent)]/30 ring-1 ring-[var(--color-accent)]/60"
+              : "bg-white/5 hover:bg-white/10"
+          ].join(" ");
+
+          const label=document.createElement("span");
+          label.textContent=d;
+          label.className="text-sm";
+          if(sameDay(new Date(state.year,state.month,d),today)){
+            label.className+=" text-[var(--color-accent)] font-bold";
+          }
+          btn.appendChild(label);
+
+          if(evts.length){
+            const dot=document.createElement("span");
+            dot.className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_8px_rgba(255,215,0,.6)]";
+            btn.appendChild(dot);
+          }
+
+          btn.addEventListener("click",()=>{
+            state.selected=iso;
+            state.selectedEventId=null;
+            renderList();
+            document.querySelectorAll("#va-calendar button").forEach(b=>b.classList.remove("ring-2","ring-white/70"));
+            btn.classList.add("ring-2","ring-white/70");
+          });
+
+          cal.appendChild(btn);
+        }
+      }
+
+      function renderList(){
+        if(!state.selected){
+          list.innerHTML="Selecciona un día en el calendario.";
+          detail.classList.add("hidden");
+          return;
+        }
+        const evts=eventsFor(state.selected).sort((a,b)=>(a.time||"").localeCompare(b.time||""));
+        if(!evts.length){
+          list.innerHTML=`No hay eventos para ${state.selected}.`;
+          detail.classList.add("hidden");
+          return;
+        }
+
+        const frag=document.createDocumentFragment();
+        evts.forEach(e=>{
+          const item=document.createElement("button");
+          item.type="button";
+          item.className="w-full text-left rounded-md border border-white/10 bg-white/5 hover:bg-[var(--color-accent)]/10 px-4 py-3 transition-all duration-200";
+          item.innerHTML=`
+            <div class="flex items-center justify-between">
+              <strong class="text-[var(--color-accent)]">${e.title}</strong>
+              <span class="text-xs text-white/60">${e.time||""}</span>
+            </div>
+            <div class="text-xs text-white/70 mt-1">${e.venue||""}</div>
+          `;
+          item.addEventListener("click",()=>{
+            document.querySelectorAll("#va-lista button").forEach(b=>b.classList.remove("ring-1","ring-[var(--color-accent)]/50"));
+            item.classList.add("ring-1","ring-[var(--color-accent)]/50");
+            state.selectedEventId=e.id;
+            renderDetail(e);
+          });
+          frag.appendChild(item);
+        });
+
+        list.innerHTML="";
+        list.appendChild(frag);
+        state.selectedEventId=evts[0].id;
+        renderDetail(evts[0]);
+      }
+
+      function renderDetail(e){
+        if(!e){ detail.classList.add("hidden"); return; }
+        cover.src=e.cover||"/img/eventos/default.jpg";
+        cover.alt=e.title||"Evento deportivo";
+        title.textContent=e.title||"Evento";
+        meta.textContent=`${e.date} — ${e.venue||""} · ${e.time||""}`;
+        desc.textContent=e.note||"";
+        score.textContent=e.score||"";
+        score.classList.toggle("hidden",!e.score);
+        detail.classList.remove("hidden");
+      }
+
+      btnPrev.addEventListener("click",()=>{
+        state.month--;
+        if(state.month<0){state.month=11;state.year--;}
+        renderCalendarDays();
+        list.innerHTML="Selecciona un día en el calendario.";
+        detail.classList.add("hidden");
+      });
+
+      btnNext.addEventListener("click",()=>{
+        state.month++;
+        if(state.month>11){state.month=0;state.year++;}
+        renderCalendarDays();
+        list.innerHTML="Selecciona un día en el calendario.";
+        detail.classList.add("hidden");
+      });
+
+      // 🔹 Inicialización
+      renderWeekHeaders();
+      renderCalendarDays();
+
+      const todayIso=`${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
+      if(eventsFor(todayIso).length){
+        state.selected=todayIso;
+        renderList();
+      }
+    })();
+  </script>
+</section>

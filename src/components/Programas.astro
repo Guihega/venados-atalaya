@@ -1,0 +1,355 @@
+<section
+  id="programas"
+  class="relative py-20 bg-[var(--color-dark)] text-[var(--color-light)] overflow-hidden"
+>
+  <!-- 🌫️ Degradado superior -->
+  <div class="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/40 to-transparent"></div>
+
+  <!-- 🏷️ TÍTULO -->
+  <div class="text-center mb-16 relative z-10">
+    <h2 class="text-4xl md:text-5xl font-extrabold tracking-wide mb-4">
+      NUESTROS <span class="text-[var(--color-secondary)]">PROGRAMAS</span>
+    </h2>
+    <div class="flex justify-center mt-4 mb-8">
+      <div class="w-32 h-[3px] bg-[var(--color-accent)] rounded-full shadow-[0_0_15px_rgba(255,215,0,0.6)]"></div>
+    </div>
+    <p class="text-light/80 max-w-2xl mx-auto text-lg font-light">
+      Entrenamientos adaptados a cada etapa del desarrollo futbolístico: técnica, disciplina y valores.
+    </p>
+  </div>
+
+  <!-- 🟩 GRID DE PROGRAMAS -->
+  <div class="max-w-6xl mx-auto grid gap-10 md:grid-cols-3 px-6 relative z-10">
+    <!-- 👦 INFANTIL -->
+    <div
+      class="group relative bg-gradient-to-b from-[var(--color-primary)]/90 to-[var(--color-secondary)]/80 rounded-xl shadow-lg overflow-hidden hover:scale-[1.03] transition-transform duration-500"
+    >
+      <img
+        src="/img/programa-infantil.webp"
+        loading="lazy"
+        alt="Programa Infantil"
+        class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-300"
+      />
+      <div class="p-6">
+        <h3 class="text-2xl font-bold mb-2">Categoría Infantil</h3>
+        <p class="text-light/80 text-sm mb-4">
+          Enfoque en coordinación, diversión y fundamentos del juego. Desarrollamos pasión y disciplina desde pequeños.
+        </p>
+        <button
+          data-programa="infantil"
+          class="inline-block mt-2 bg-[var(--color-accent)] text-[var(--color-dark)] font-semibold px-4 py-2 rounded-md shadow-md hover:bg-yellow-400 hover:scale-105 transition-all duration-300"
+        >
+          Ver más
+        </button>
+      </div>
+    </div>
+
+    <!-- 🧒 JUVENIL -->
+    <div
+      class="group relative bg-gradient-to-b from-[var(--color-primary)]/90 to-[var(--color-secondary)]/80 rounded-xl shadow-lg overflow-hidden hover:scale-[1.03] transition-transform duration-500"
+    >
+      <img
+        src="/img/programa-juvenil.webp"
+        loading="lazy"
+        alt="Programa Juvenil"
+        class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-300"
+      />
+      <div class="p-6">
+        <h3 class="text-2xl font-bold mb-2">Categoría Juvenil</h3>
+        <p class="text-light/80 text-sm mb-4">
+          Potenciamos la técnica, la estrategia y la disciplina mental. Fomentamos el liderazgo y la cooperación.
+        </p>
+        <button
+          data-programa="juvenil"
+          class="inline-block mt-2 bg-[var(--color-accent)] text-[var(--color-dark)] font-semibold px-4 py-2 rounded-md shadow-md hover:bg-yellow-400 hover:scale-105 transition-all duration-300"
+        >
+          Ver más
+        </button>
+      </div>
+    </div>
+
+    <!-- 🦌 AVANZADO -->
+    <div
+      class="group relative bg-gradient-to-b from-[var(--color-primary)]/90 to-[var(--color-secondary)]/80 rounded-xl shadow-lg overflow-hidden hover:scale-[1.03] transition-transform duration-500"
+    >
+      <img
+        src="/img/programa-avanzado.webp"
+        loading="lazy"
+        alt="Programa Avanzado"
+        class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-300"
+      />
+      <div class="p-6">
+        <h3 class="text-2xl font-bold mb-2">Categoría Avanzada</h3>
+        <p class="text-light/80 text-sm mb-4">
+          Entrenamiento competitivo de alto rendimiento. Preparación técnica y táctica para niveles profesionales.
+        </p>
+        <button
+          data-programa="avanzado"
+          class="inline-block mt-2 bg-[var(--color-accent)] text-[var(--color-dark)] font-semibold px-4 py-2 rounded-md shadow-md hover:bg-yellow-400 hover:scale-105 transition-all duration-300"
+        >
+          Ver más
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🟩 MODAL DETALLE OPTIMIZADO -->
+<div
+  id="modal-programa"
+  class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50"
+>
+  <div
+    id="modal-content"
+    class="relative bg-[var(--color-dark)] rounded-2xl border border-[var(--color-secondary)]/40 shadow-[0_0_40px_rgba(0,0,0,0.6)] max-w-6xl w-[95%] overflow-hidden opacity-0 scale-95 transition-all duration-400 ease-out"
+  >
+    <!-- ❌ Botón de cierre -->
+    <button
+      id="closeModal"
+      class="absolute top-4 right-5 text-light/70 hover:text-[var(--color-accent)] text-2xl font-bold transition z-20"
+      aria-label="Cerrar"
+    >
+      ×
+    </button>
+
+    <!-- 📘 Contenido -->
+    <div class="p-8 md:p-10 text-left">
+      <!-- 🏷️ Título -->
+      <h3
+        id="modal-title"
+        class="text-3xl md:text-4xl font-extrabold text-[var(--color-accent)] mb-3 tracking-tight"
+      >
+        Título del Programa
+      </h3>
+
+      <!-- Descripción principal -->
+      <p
+        id="modal-desc"
+        class="text-light/90 text-[1.05rem] leading-relaxed mb-8 max-w-3xl"
+      >
+        Descripción extendida del programa...
+      </p>
+
+      <!-- 🧩 Bloques en 3 columnas -->
+      <div class="grid md:grid-cols-3 gap-8 mb-10">
+        <!-- Beneficios -->
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-[var(--color-secondary)]">
+            Beneficios
+          </h4>
+          <ul
+            id="modal-beneficios"
+            class="grid gap-y-2 text-light/85 text-sm leading-snug"
+          ></ul>
+        </div>
+
+        <!-- Valores -->
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-[var(--color-secondary)]">
+            Valores
+          </h4>
+          <div
+            id="modal-valores"
+            class="flex flex-wrap gap-2 text-[var(--color-accent)] text-sm font-semibold"
+          ></div>
+        </div>
+
+        <!-- Horarios -->
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-[var(--color-secondary)]">
+            Horarios y Niveles
+          </h4>
+          <div
+            id="modal-extra"
+            class="bg-[var(--color-primary)]/60 rounded-lg p-5 border border-[var(--color-secondary)]/30 text-sm text-light/85"
+          ></div>
+        </div>
+      </div>
+
+      <!-- 📸 Galería tipo slider -->
+      <div class="relative mb-10">
+        <h4 class="text-lg font-semibold mb-3 text-[var(--color-secondary)]">
+          Momentos del Entrenamiento
+        </h4>
+
+        <div class="relative overflow-hidden">
+          <!-- Slider -->
+          <div
+            id="modal-slider"
+            class="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
+          ></div>
+
+          <!-- Controles -->
+          <button
+            id="prev-slide"
+            aria-label="Anterior"
+            class="absolute left-0 top-1/2 -translate-y-1/2 bg-[var(--color-primary)]/70 text-[var(--color-accent)] hover:bg-[var(--color-primary)] transition rounded-full w-8 h-8 flex items-center justify-center shadow-lg"
+          >
+            ‹
+          </button>
+          <button
+            id="next-slide"
+            aria-label="Siguiente"
+            class="absolute right-0 top-1/2 -translate-y-1/2 bg-[var(--color-primary)]/70 text-[var(--color-accent)] hover:bg-[var(--color-primary)] transition rounded-full w-8 h-8 flex items-center justify-center shadow-lg"
+          >
+            ›
+          </button>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center">
+        <a
+          href="#inscripcion"
+          class="inline-block bg-[var(--color-accent)] text-[var(--color-dark)] font-semibold px-8 py-3 rounded-md shadow-md hover:scale-105 transition"
+        >
+          Inscribirme ahora
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✨ SCRIPT OPTIMIZADO -->
+<script is:inline>
+  // ===============================
+  // ⚽ Datos de los programas
+  // ===============================
+  const programas = {
+    infantil: {
+      titulo: "Categoría Infantil",
+      desc: "Ideal para niños y niñas de 5 a 9 años. Se centra en desarrollar coordinación, disciplina, motricidad y amor por el fútbol mediante dinámicas lúdicas y entrenamiento divertido.",
+      beneficios: [
+        "⚽ Iniciación técnica con ejercicios dinámicos.",
+        "🏃 Desarrollo de coordinación y reflejos.",
+        "🤝 Trabajo en equipo desde temprana edad.",
+        "🎯 Juegos enfocados en concentración y respeto.",
+      ],
+      valores: ["Disciplina", "Alegría", "Respeto", "Cooperación"],
+      galeria: [
+        "/img/infantil.webp",
+        "/img/infantil1.webp",
+        "/img/infantil2.webp",
+      ],
+      extra: `
+        📅 Lunes a Viernes — 4:00 PM a 6:00 PM<br>
+        📍 Cancha Atalaya Infantil<br>
+        👶 Nivel Inicial y Principiante
+      `,
+    },
+    juvenil: {
+      titulo: "Categoría Juvenil",
+      desc: "Dirigida a jóvenes de 10 a 14 años que buscan perfeccionar su técnica y táctica. Enfocamos los entrenamientos en disciplina, visión de juego y desarrollo físico controlado.",
+      beneficios: [
+        "🎯 Perfeccionamiento técnico y táctico.",
+        "💪 Fortalecimiento físico progresivo.",
+        "🧠 Toma de decisiones en juego real.",
+        "🦶 Entrenamientos específicos por posición.",
+      ],
+      valores: ["Liderazgo", "Esfuerzo", "Responsabilidad", "Trabajo en equipo"],
+      galeria: [
+        "/img/juvenil.webp",
+        "/img/juvenil1.webp",
+        "/img/juvenil2.webp",
+      ],
+      extra: `
+        📅 Martes a Sábado — 5:00 PM a 7:00 PM<br>
+        📍 Campo Norte Atalaya<br>
+        ⚽ Nivel Intermedio y Avanzado
+      `,
+    },
+    avanzado: {
+      titulo: "Categoría Avanzada",
+      desc: "Programa de alto rendimiento para jugadores de 15 años en adelante. Entrenamientos intensivos con enfoque competitivo, preparación táctica, técnica y mental para visorias y torneos.",
+      beneficios: [
+        "🔥 Entrenamiento de alto rendimiento.",
+        "🏋️ Preparación física personalizada.",
+        "🧩 Análisis táctico y estratégico.",
+        "🥇 Plan de competencia y visorias.",
+      ],
+      valores: ["Compromiso", "Perseverancia", "Competitividad", "Superación"],
+      galeria: [
+        "/img/avanzado.webp",
+        "/img/avanzado1.webp",
+        "/img/avanzado2.webp",
+      ],
+      extra: `
+        📅 Lunes, Miércoles y Viernes — 6:00 PM a 8:00 PM<br>
+        📍 Campo Principal Atalaya<br>
+        🦌 Nivel Alto Rendimiento / Competitivo
+      `,
+    },
+  };
+
+  // ===============================
+  // ⚙️ Lógica del modal
+  // ===============================
+  const modal = document.getElementById("modal-programa");
+  const content = document.getElementById("modal-content");
+  const closeModal = document.getElementById("closeModal");
+  const slider = document.getElementById("modal-slider");
+
+  document.querySelectorAll("[data-programa]").forEach((btn) => {
+    btn.addEventListener(
+      "click",
+      (e) => {
+        e.preventDefault();
+        const id = btn.dataset.programa;
+        const p = programas[id];
+        if (!p) return console.warn(`⚠️ Programa '${id}' no encontrado`);
+
+        // Contenido
+        document.getElementById("modal-title").textContent = p.titulo;
+        document.getElementById("modal-desc").textContent = p.desc;
+        document.getElementById("modal-beneficios").innerHTML = p.beneficios
+          .map((b) => `<li>${b}</li>`)
+          .join("");
+        document.getElementById("modal-valores").innerHTML = p.valores
+          .map(
+            (v) =>
+              `<span class="bg-[var(--color-secondary)]/20 px-3 py-1 rounded-full border border-[var(--color-secondary)]/40">${v}</span>`
+          )
+          .join("");
+        document.getElementById("modal-extra").innerHTML = p.extra;
+        slider.innerHTML = p.galeria
+          .map(
+            (g) =>
+              `<img src="${g}" loading="lazy" decoding="async" class="rounded-md w-64 h-40 object-cover snap-center shrink-0 hover:scale-105 transition-all" />`
+          )
+          .join("");
+
+        // Mostrar modal sin scroll en página
+        document.documentElement.classList.add("overflow-hidden");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        requestAnimationFrame(() => {
+          content.classList.remove("opacity-0", "scale-95");
+          content.classList.add("opacity-100", "scale-100");
+        });
+      },
+      { passive: true }
+    );
+  });
+
+  // Cierre modal
+  closeModal.addEventListener("click", () => {
+    content.classList.add("opacity-0", "scale-95");
+    document.documentElement.classList.remove("overflow-hidden");
+    setTimeout(() => {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }, 400);
+  });
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal.click();
+  });
+
+  // ===============================
+  // 🎞️ Slider simple (sin repaints)
+  // ===============================
+  document.getElementById("prev-slide").addEventListener("click", () => {
+    slider.scrollBy({ left: -300, behavior: "smooth" });
+  });
+  document.getElementById("next-slide").addEventListener("click", () => {
+    slider.scrollBy({ left: 300, behavior: "smooth" });
+  });
+</script>

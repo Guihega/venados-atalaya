@@ -1,0 +1,96 @@
+---
+/**
+ * 🌓 ThemeToggle — Venados Atalaya
+ * Cambia entre modo oscuro y claro sin romper estilos previos.
+ * - Persistencia (localStorage)
+ * - Íconos SVG adaptados al tema
+ * - Transiciones suaves
+ */
+---
+
+<button
+  id="theme-toggle"
+  class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center
+         bg-[var(--color-secondary)] text-[var(--color-light)] shadow-lg
+         border border-[var(--color-accent)] hover:scale-110 hover:shadow-[0_0_15px_var(--color-accent-glow)]
+         transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/60"
+  aria-label="Cambiar tema"
+  title="Cambiar tema"
+>
+  <!-- 🌙 Ícono modo oscuro -->
+  <svg
+    id="icon-moon"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-5 h-5"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M21.752 15.002A9.718 9.718 0 0112 22C6.477 22 2 17.523 2 12S6.477 2 12 2c.27 0 .537.013.802.039a1 1 0 01.28 1.964A7.003 7.003 0 0019 12a6.993 6.993 0 01-3.677 6.09 1 1 0 01.429 1.912z"
+    />
+  </svg>
+
+  <!-- ☀️ Ícono modo claro -->
+  <svg
+    id="icon-sun"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-5 h-5 hidden"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M12 18a6 6 0 100-12 6 6 0 000 12zM12 0v2m0 20v2m12-12h-2M2 12H0m16.95 7.07l1.414 1.414M5.636 5.636L4.222 4.222m0 15.556l1.414-1.414M19.778 4.222l-1.414 1.414"
+    />
+  </svg>
+</button>
+
+<script is:inline>
+  const html = document.documentElement;
+  const btn = document.getElementById("theme-toggle");
+  const sun = document.getElementById("icon-sun");
+  const moon = document.getElementById("icon-moon");
+
+  // 🌗 Recuperar tema guardado o sistema preferido
+  const saved = localStorage.getItem("theme");
+  if (saved === "light") html.classList.add("theme-light");
+  else if (!saved && window.matchMedia("(prefers-color-scheme: light)").matches) {
+    html.classList.add("theme-light");
+  }
+
+  const updateIcons = () => {
+    const isLight = html.classList.contains("theme-light");
+    sun.classList.toggle("hidden", !isLight);
+    moon.classList.toggle("hidden", isLight);
+  };
+
+  updateIcons();
+
+  // 🖱️ Evento click
+  btn.addEventListener("click", () => {
+    html.classList.toggle("theme-light");
+    const theme = html.classList.contains("theme-light") ? "light" : "dark";
+    localStorage.setItem("theme", theme);
+    updateIcons();
+
+    // ✨ Feedback visual temporal (opcional)
+    const notice = document.createElement("div");
+    notice.textContent = theme === "light" ? "☀️ Modo claro activado" : "🌙 Modo oscuro activado";
+    notice.className =
+      "fixed bottom-20 right-6 px-3 py-1 rounded-md bg-[var(--color-accent)] text-[var(--color-dark)] text-xs font-semibold shadow-md animate-fade-out";
+    document.body.appendChild(notice);
+    setTimeout(() => notice.remove(), 1500);
+  });
+</script>
+
+<style>
+  @keyframes fade-out {
+    0% { opacity: 0; transform: translateY(10px); }
+    20% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }
+
+  .animate-fade-out {
+    animation: fade-out 1.6s ease forwards;
+  }
+</style>

@@ -1,0 +1,118 @@
+---
+/*
+  🏆 Venados Atalaya — Logros y Reconocimientos (Versión Premium + Ligera)
+  Autor: MhegasDev
+  Enfoque: Más presencia visual, equilibrio, y animación sutil de reflejo.
+*/
+
+const logros = [
+  { icon: "🏆", valor: 12, texto: "Torneos Ganados" },
+  { icon: "⚽", valor: 250, texto: "Jugadores Formados" },
+  { icon: "🏟️", valor: 8, texto: "Ligas Activas" },
+  { icon: "🥇", valor: 95, texto: "Tasa de Retención (%)" },
+];
+---
+
+<section
+  id="logros"
+  class="relative py-36 bg-gradient-to-b from-[#02120d] via-[#033126] to-[#05543d] text-white overflow-hidden"
+>
+  <!-- 🏷️ TÍTULO -->
+  <header class="text-center mb-24 relative z-10">
+    <h2
+      id="titulo-logros" 
+      class="text-4xl md:text-5xl font-extrabold tracking-wide mb-4 leading-tight text-[var(--color-primary)] dark:text-[var(--color-accent)]"
+    >
+      NUESTROS <span class="text-[var(--color-secondary)]">LOGROS</span> 
+    </h2>
+    <div class="flex justify-center mt-4 mb-8">
+      <div class="w-32 h-[3px] bg-[var(--color-accent)] rounded-full shadow-[0_0_15px_rgba(255,215,0,0.6)]"></div>
+    </div>
+    <p class="text-light/80 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+      Años de disciplina, estrategia y pasión nos han posicionado entre las academias más sólidas y reconocidas de la región.
+    </p>
+  </header>
+
+  <!-- 🏅 GRID -->
+  <div class="max-w-6xl mx-auto grid gap-12 sm:grid-cols-2 lg:grid-cols-4 px-6 relative z-10">
+    {logros.map((l, i) => (
+      <article
+        class={`relative flex flex-col items-center justify-center text-center 
+          bg-gradient-to-b from-[#0b2720]/80 to-[#052017]/60 border border-white/10 
+          rounded-2xl p-14 shadow-[0_0_25px_rgba(0,0,0,0.4)]
+          transform transition-all duration-500 hover:scale-110 
+          hover:shadow-[0_0_40px_rgba(255,215,0,0.25)]
+          opacity-0 translate-y-10 overflow-hidden`}
+        style={`transition-delay:${i * 150}ms`}
+      >
+        <!-- ✨ REFLEJO ANIMADO -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 animate-[shine_3s_linear_infinite] pointer-events-none"></div>
+
+        <!-- ICONO -->
+        <div class="text-7xl mb-6 drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]">
+          {l.icon}
+        </div>
+
+        <!-- CONTADOR -->
+        <h3
+          class="text-6xl font-extrabold text-[var(--color-accent)] counter mb-3"
+          data-valor={l.valor}
+        >
+          0
+        </h3>
+
+        <!-- TEXTO -->
+        <p class="uppercase text-base tracking-wide text-white/85 font-semibold">
+          {l.texto}
+        </p>
+      </article>
+    ))}
+  </div>
+
+  <!-- ⚙️ SCRIPT SEGURO Y OPTIMIZADO -->
+  <script is:inline>
+    if (!window.__logrosInitialized) {
+      window.__logrosInitialized = true;
+
+      const observerLogros = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.querySelectorAll("article").forEach((card, i) => {
+                setTimeout(() => {
+                  card.classList.add("opacity-100", "translate-y-0");
+                }, i * 150);
+              });
+
+              entry.target.querySelectorAll(".counter").forEach((el) => {
+                const valor = parseInt(el.dataset.valor);
+                let count = 0;
+                const step = Math.ceil(valor / 50);
+                const timer = setInterval(() => {
+                  count += step;
+                  el.textContent = count >= valor ? valor : count;
+                  if (count >= valor) clearInterval(timer);
+                }, 20);
+              });
+
+              observerLogros.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      const section = document.querySelector("#logros");
+      if (section) observerLogros.observe(section);
+    }
+  </script>
+
+  <!-- 💡 ANIMACIÓN DE REFLEJO -->
+  <style>
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(20deg); opacity: 0; }
+      50% { opacity: 0.3; }
+      100% { transform: translateX(100%) rotate(20deg); opacity: 0; }
+    }
+  </style>
+</section>

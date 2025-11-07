@@ -1,0 +1,1203 @@
+@import "tailwindcss";
+
+/* ==========================================
+   🎨 VARIABLES Y ESTILOS GLOBALES VENADOS ATALAYA
+   ========================================== */
+
+@theme {
+  --color-primary: #004A43; /* Verde oscuro principal */
+  --color-secondary: #007C66; /* Verde medio acento */
+  --color-navy: #243A4B; /* Azul escudo */
+  --color-light: #FFFFFF; /* Blanco uniforme */
+  --color-dark: #01423a; /* Fondo oscuro */
+  --color-accent: #FFD700; /* Dorado complementario */
+
+  --color-secondary-hover: #00A785; /* Verde esmeralda brillante */
+  --color-accent-glow: rgba(255, 215, 0, 0.85); /* Dorado luminoso */
+}
+
+/* ==========================================
+   ✨ ESTILO BASE Y TIPOGRAFÍA
+   ========================================== */
+
+body {
+  font-family: 'Teko', 'Inter', sans-serif;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+}
+
+/* Links y botones con transiciones suaves */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Hover states elegantes */
+
+button:hover {
+  filter: brightness(1.15);
+}
+
+/* ==========================================
+   ⚙️ COMPONENTES PERSONALIZADOS
+   ========================================== */
+
+/* Hero overlay — mejora legibilidad sobre video */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 22, 0.95),
+    rgba(15, 23, 22, 0.6),
+    transparent
+  );
+}
+
+/* Enlaces con subrayado animado */
+.link-underline {
+  position: relative;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.3s;
+}
+
+.link-underline:hover {
+  color: var(--color-accent);
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--color-accent);
+  transition: width 0.3s ease-in-out;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ==========================================
+   🟩 BOTONES PRINCIPALES
+   ========================================== */
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  @apply bg-[var(--color-secondary)] text-[var(--color-dark)] shadow-md rounded-lg font-semibold;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-secondary);
+  box-shadow: 0 0 20px rgba(0, 124, 102, 0.4);
+  color: var(--color-light);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  @apply bg-[var(--color-light)] text-[var(--color-dark)] shadow-md rounded-lg font-semibold;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(0, 74, 67, 0.4);
+  color: var(--color-light);
+}
+
+.btn-inscribete {
+  position: relative;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.375rem;
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
+  z-index: 10; /* 👈 evita que el gradiente del navbar tape el efecto */
+}
+
+.btn-inscribete:hover {
+  background-color: var(--color-accent); /* Dorado institucional */
+  color: var(--color-dark); /* Texto oscuro sobre dorado */
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.3);
+  transform: scale(1.07);
+}
+
+.btn-inscribete:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+
+/* === Animaciones calendario Venados === */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#va-detalle.fade-enter,
+#va-lista.fade-enter {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ==== Venados Gallery Animations ==== */
+#va-gallery .va-img {
+  will-change: transform, opacity;
+}
+#va-lightbox {
+  transition: opacity 0.25s ease;
+}
+#va-lightbox:not(.hidden) {
+  display: flex;
+}
+
+/* ==========================================
+   🌿 TEMA CLARO OPTIMIZADO — VENADOS ATALAYA
+   ========================================== */
+html.theme-light {
+  /* 🎨 Paleta institucional refinada */
+  --color-primary: #007a52; /* Verde institucional principal */
+  --color-secondary: #00a785; /* Verde acento brillante */
+  --color-accent: #e5b400; /* Dorado institucional */
+  --color-light: #0f1716; /* Texto oscuro neutro */
+  --color-dark: #88d1b4; /* Fondo verde claro global */
+  --color-navy: #c9d5d1; /* Verde-gris claro para contraste suave */
+  --color-secondary-hover: #00996a;
+  --color-accent-glow: rgba(229, 180, 0, 0.75);
+
+  --color-bg: var(--color-dark);
+  --color-fg: var(--color-light);
+  --color-border: rgba(0, 0, 0, 0.08);
+
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* 🩶 Fondo general */
+html.theme-light body {
+  background: linear-gradient(
+    to bottom right,
+    #eaf5f1 0%,
+    #e3f0eb 50%,
+    #e9f3ef 100%
+  );
+  color: var(--color-fg);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* ✳️ Títulos con presencia visual */
+html.theme-light h1,
+html.theme-light h2,
+html.theme-light h3 {
+  color: var(--color-primary);
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 6px rgba(0, 100, 80, 0.05);
+}
+
+/* 🟩 Botones principales */
+html.theme-light .btn-inscribete {
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(0, 122, 82, 0.25);
+  transition: all 0.3s ease;
+}
+html.theme-light .btn-inscribete:hover {
+  background-color: var(--color-accent);
+  color: var(--color-light);
+  box-shadow: 0 0 18px rgba(229, 180, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* 🟢 Botón primario */
+html.theme-light .btn-primary {
+  background-color: var(--color-secondary);
+  color: #fff;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(0, 167, 133, 0.25);
+  transition: all 0.25s ease;
+}
+html.theme-light .btn-primary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  box-shadow: 0 0 15px rgba(0, 167, 133, 0.35);
+}
+
+/* ⚪ Botón secundario */
+html.theme-light .btn-secondary {
+  background-color: #ffffffcc;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+html.theme-light .btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* 🔗 Enlaces */
+html.theme-light a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+html.theme-light a:hover {
+  color: var(--color-accent);
+}
+
+/* 🧩 Secciones */
+html.theme-light section {
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* 🪶 Cajas, cards, grids */
+html.theme-light .card,
+html.theme-light .group {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 100, 80, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+html.theme-light .card:hover,
+html.theme-light .group:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* 🦶 Footer */
+html.theme-light footer {
+  background: linear-gradient(to top, #e2efea, #f4f8f6);
+  color: var(--color-fg);
+  border-top: 1px solid rgba(0, 100, 80, 0.1);
+  padding-top: 2rem;
+}
+html.theme-light footer a {
+  color: var(--color-primary);
+}
+html.theme-light footer a:hover {
+  color: var(--color-accent);
+}
+
+/* 🖋️ Tipografía secundaria y contraste */
+
+
+/* 📱 Ajuste móvil */
+@media (max-width: 768px) {
+  html.theme-light h1,
+  html.theme-light h2 {
+    font-size: 1.9rem;
+  }
+  html.theme-light section {
+    padding: 3rem 1rem;
+  }
+}
+
+/* =========================================================
+   ⚽ SECCIÓN PROGRAMAS — OPTIMIZACIÓN VISUAL PROFESIONAL
+   ========================================================= */
+
+/* 🎨 Fondo general (modo claro) */
+html.theme-light #programas {
+  background: linear-gradient(to bottom, #DDF1E9 0%, #B8E3CD 100%);
+  color: rgba(20, 20, 20, 0.9);
+  position: relative;
+}
+
+/* 🌫️ Degradado superior */
+html.theme-light #programas > div:first-child {
+  background: linear-gradient(to bottom, rgba(0, 122, 82, 0.08), transparent);
+}
+
+/* 🏷️ Título y descripción */
+html.theme-light #programas h2 {
+  color: var(--color-primary);
+  text-shadow: none;
+}
+
+html.theme-light #programas p {
+  color: rgba(20, 20, 20, 0.85);
+}
+
+/* 🧩 Tarjetas */
+html.theme-light #programas .group {
+  background: linear-gradient(180deg, rgb(1 145 100 / 90%), rgb(0 173 126 / 90%)) !important;
+  border: 1px solid rgba(0, 122, 82, 0.15);
+  border-radius: 1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.45s ease;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+
+html.theme-light #programas .group:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 122, 82, 0.18);
+}
+
+/* 📸 Imágenes */
+html.theme-light #programas .group img {
+  filter: brightness(0.95) contrast(1.05);
+  transition: all 0.4s ease;
+}
+
+html.theme-light #programas .group:hover img {
+  filter: brightness(1.12) contrast(1.08);
+}
+
+/* 🏷️ Títulos de tarjetas */
+html.theme-light #programas h3 {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* 📄 Descripciones */
+html.theme-light #programas .group p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+/* 🟨 Botones */
+html.theme-light #programas button[data-programa] {
+  background: var(--color-accent);
+  color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(229, 180, 0, 0.35);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+html.theme-light #programas button[data-programa]:hover {
+  transform: translateY(-2px);
+  background: #ffdd33;
+  box-shadow: 0 8px 18px rgba(229, 180, 0, 0.45);
+}
+
+/* 🌙 Tema oscuro (solo ajustes suaves) */
+html:not(.theme-light) #programas {
+  background: linear-gradient(to bottom, var(--color-dark) 0%, #0F1C19 100%);
+}
+
+html:not(.theme-light) #programas .group {
+  background: rgba(0, 74, 67, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+html:not(.theme-light) #programas .group:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+html:not(.theme-light) #programas h3 {
+  color: var(--color-accent);
+}
+
+html:not(.theme-light) #programas p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+html:not(.theme-light) #programas button[data-programa] {
+  background: var(--color-accent);
+  color: var(--color-dark);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+}
+
+html:not(.theme-light) #programas button[data-programa]:hover {
+  background: #ffda4a;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+
+/* =============================================
+    🎨 Fondo especial para metodología
+    ============================================= */
+html.theme-light #metodologia.section-bg-a {
+  background: linear-gradient(to bottom, #F2FAF7 0%, #DCEFE7 100%);
+  color: rgba(20, 20, 20, 0.9);
+}
+
+html.theme-light #metodologia h2 {
+  color: var(--color-primary);
+}
+
+html.theme-light #metodologia article {
+  background: linear-gradient(180deg, rgb(1 145 100 / 90%), rgb(0 173 126 / 90%)) !important;
+  border: 1px solid rgba(0, 122, 82, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+html.theme-light #metodologia article:hover {
+  box-shadow: 0 12px 30px rgba(0, 122, 82, 0.15);
+}
+
+html.theme-light #metodologia figure img {
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+html:not(.theme-light) #metodologia.section-bg-a {
+  background: linear-gradient(to bottom, #0E1F1B, #102821);
+}
+
+html:not(.theme-light) #metodologia article {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+html:not(.theme-light) #metodologia article:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+html.theme-light #metodologia h3, 
+html.theme-light #metodologia .text-sm
+{
+  color: rgba(255, 255, 255, 0.85);
+}
+  /* ==========================================
+   🦌 ENTRNADORES — THEME CONTROL
+   ========================================== */
+
+/* 🌞 Tema claro */
+html.theme-light #entrenadores {
+  background: linear-gradient(to bottom, #DDF1E9 0%, #B8E3CD 100%);
+}
+
+/* 🌫️ Degradado superior */
+html.theme-light #entrenadores > div:first-child {
+  background: linear-gradient(to bottom, rgba(0, 122, 82, 0.08), transparent);
+}
+
+html.theme-light #entrenadores h2 {
+  color: var(--color-primary);
+}
+
+html.theme-light #entrenadores p {
+  color: rgba(20, 20, 20, 0.8);
+}
+
+html.theme-light #entrenadores [role="tab"] {
+  border-color: rgba(0, 122, 82, 0.25);
+}
+
+html.theme-light #entrenadores [role="tab"][aria-selected="true"] {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 20px rgba(229, 180, 0, 0.4);
+}
+
+html.theme-light #entrenadores [data-panel] h3 {
+  color: var(--color-primary);
+}
+
+html.theme-light #entrenadores [data-panel] p {
+  color: rgba(20, 20, 20, 0.85);
+}
+
+html.theme-light #entrenadores a {
+  background: var(--color-accent);
+  color: var(--color-dark);
+  box-shadow: 0 4px 12px rgba(229, 180, 0, 0.35);
+}
+html.theme-light #entrenadores a:hover {
+  background: #ffd64d;
+  transform: translateY(-2px);
+}
+
+
+
+/* ==========================================
+   🏆 LOGROS — THEME CONTROL
+   ========================================== */
+
+/* 🌞 Tema claro */
+html.theme-light #logros {
+  background: linear-gradient(to bottom, #F2FAF7 0%, #DCEFE7 100%);
+  color: rgba(20, 20, 20, 0.9);
+}
+
+html.theme-light #logros h2 {
+  color: var(--color-primary);
+}
+
+html.theme-light #logros p {
+  color: rgba(20, 20, 20, 0.85);
+}
+
+html.theme-light #logros article {
+  background: linear-gradient(180deg, rgb(1 145 100 / 90%), rgb(0 173 126 / 90%)) !important;
+  border-color: rgba(0, 122, 82, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+html.theme-light #logros article:hover {
+  box-shadow: 0 12px 35px rgba(0, 122, 82, 0.15);
+}
+
+html.theme-light #logros .counter {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 0 10px rgba(0, 122, 82, 0.2);
+}
+
+html.theme-light #logros .text-base {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* 🌙 Tema oscuro (mantiene la versión original) */
+html:not(.theme-light) #logros {
+  background: linear-gradient(
+    to bottom,
+    #02120d 0%,
+    #033126 50%,
+    #05543d 100%
+  );
+  color: var(--color-light);
+}
+
+html:not(.theme-light) #logros h2 {
+  color: var(--color-accent);
+}
+
+html:not(.theme-light) #logros .counter {
+  color: var(--color-accent);
+}
+
+
+/* ==========================================
+   🦌 CALENDARIO DEPORTIVO — THEME LIGHT (CARDS DESTACADAS)
+   ========================================== */
+html.theme-light #calendario {
+  background: linear-gradient(to bottom, #DDF1E9 0%, #B8E3CD 100%);
+  color: var(--color-light);
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 5rem;
+}
+
+html.theme-light #calendario > div:first-child {
+    background: linear-gradient(to bottom, rgba(0, 122, 82, 0.08), transparent);
+}
+
+
+/* 🏷️ TÍTULOS */
+html.theme-light #calendario h2 {
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+html.theme-light #calendario p {
+  color: rgba(20, 20, 20, 0.85);
+}
+
+/* ==============================
+   📦 PANEL BASE (calendario y lista)
+   ============================== */
+html.theme-light #calendario .bg-black\/30 {
+  background: linear-gradient(180deg, rgb(1 145 100 / 90%), rgb(0 173 126 / 90%)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(10px);
+}
+
+/* ==============================
+   🗓️ CABECERA DEL CALENDARIO
+   ============================== */
+html.theme-light #va-month-label {
+  color: #ffd700;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+html.theme-light #va-prev,
+html.theme-light #va-next {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+html.theme-light #va-prev:hover,
+html.theme-light #va-next:hover {
+  background-color: rgba(255, 215, 0, 0.2);
+}
+
+/* ==============================
+   🔢 DÍAS DEL CALENDARIO
+   ============================== */
+html.theme-light #va-calendar button {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.2s ease;
+}
+html.theme-light #va-calendar button:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: scale(1.04);
+}
+html.theme-light #va-calendar button[aria-selected="true"] {
+  background-color: rgba(255, 215, 0, 0.25);
+  border: 2px solid #ffd700;
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* ==============================
+   📋 LISTA DE EVENTOS
+   ============================== */
+html.theme-light #va-lista button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  border-radius: 0.75rem;
+}
+html.theme-light #va-lista button:hover {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: rgba(255, 215, 0, 0.4);
+  transform: translateX(3px);
+}
+html.theme-light #va-lista strong {
+  color: #ffd700;
+}
+html.theme-light #va-lista span {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+html.theme-light #calendario h3 {
+  color: rgba(255, 255, 255, 0.8);
+}
+/* ==============================
+   🧾 DETALLE DEL EVENTO
+   ============================== */
+html.theme-light #va-detalle {
+  background: linear-gradient(180deg, rgb(1 145 100 / 90%), rgb(0 173 126 / 90%)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+}
+
+html.theme-light #va-title {
+  color: #ffd700;
+  font-weight: 900;
+}
+
+html.theme-light #va-meta {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+html.theme-light #va-desc {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+html.theme-light #va-score {
+  background-color: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+  font-weight: 900;
+  padding: 0.25rem 1rem;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05);
+}
+
+/* ==============================
+   🌙 OSCURO — intacto
+   ============================== */
+html:not(.theme-light) #calendario {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+
+
+/* ==========================================
+   🦌 PRÓXIMOS ENCUENTROS — THEME LIGHT (CARDS DESTACADAS)
+   ========================================== */
+
+html.theme-light #proximos {
+  background: linear-gradient(to bottom, #F2FAF7 0%, #DCEFE7 100%);
+  color: rgba(20, 20, 20, 0.9);
+  position: relative;
+  padding-bottom: 5rem;
+}
+
+html.theme-light #proximos > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 🏷️ Encabezado */
+html.theme-light #proximos h2 {
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.5px;
+}
+html.theme-light #proximos p {
+  color: rgba(20, 20, 20, 0.85);
+}
+
+/* ==============================
+   🏟️ CARDS DE ENCUENTROS
+   ============================== */
+html.theme-light #proximos .va-card {
+  background: linear-gradient(180deg, rgb(1 145 100 / 90%), rgb(0 173 126 / 90%)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  color: #fff;
+  transition: all 0.35s ease;
+}
+
+html.theme-light #proximos .va-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 215, 0, 0.25);
+}
+
+/* 🖼️ Imagen */
+html.theme-light #proximos .va-card img {
+  height: 190px;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+html.theme-light #proximos .va-card:hover img {
+  opacity: 1;
+}
+
+/* 📝 Contenido interno */
+html.theme-light #proximos .va-card h3 {
+  color: #ffd700;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+html.theme-light #proximos .va-card p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+html.theme-light #proximos .va-card strong {
+  color: #ffd700;
+}
+
+/* ⚽ Equipos */
+html.theme-light #proximos .va-card div.border-t {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+html.theme-light #proximos .va-card span.text-sm {
+  color: #ffffff;
+  font-weight: 500;
+}
+html.theme-light #proximos .va-card span.text-xs {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* ==============================
+   🌙 OSCURO — intacto
+   ============================== */
+html:not(.theme-light) #proximos {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+
+/* ==========================================
+   🦌 GALERÍA FOTOGRÁFICA — THEME LIGHT
+   ========================================== */
+
+html.theme-light #galeria {
+  background: linear-gradient(to bottom, #DDF1E9 0%, #B8E3CD 100%);
+    color: var(--color-light);
+    /* color: #ffffff; */
+    position: relative;
+    padding-bottom: 5rem;
+}
+
+html.theme-light #galeria > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 🏷️ Encabezado */
+html.theme-light #galeria h2 {
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.5px;
+}
+
+html.theme-light #galeria p {
+  color: rgba(20, 20, 20, 0.85);
+}
+
+/* ==============================
+   🖼️ IMÁGENES EN GRID
+   ============================== */
+html.theme-light #galeria .va-img {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  transform: translateY(0);
+  transition: all 0.4s ease;
+}
+html.theme-light #galeria .va-img:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* 📸 Imagen */
+html.theme-light #galeria .va-img img {
+  border-radius: 1rem;
+  filter: brightness(0.9) contrast(1.05);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+html.theme-light #galeria .va-img:hover img {
+  filter: brightness(1.05) contrast(1.15);
+  transform: scale(1.08);
+}
+
+/* 🔳 Overlay */
+html.theme-light #galeria .va-img div {
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+}
+html.theme-light #galeria .va-img span {
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* ==============================
+   🪩 LIGHTBOX
+   ============================== */
+html.theme-light #va-lightbox {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+}
+
+html.theme-light #va-lightbox-img {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+html.theme-light #va-caption {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+html.theme-light #va-prev,
+html.theme-light #va-next,
+html.theme-light #va-close {
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+html.theme-light #va-prev:hover,
+html.theme-light #va-next:hover,
+html.theme-light #va-close:hover {
+  color: #ffd700;
+  transform: scale(1.1);
+}
+
+/* ==============================
+   🧭 ANIMACIÓN DE APARICIÓN
+   ============================== */
+html.theme-light #galeria .va-img {
+  opacity: 0;
+  transform: translateY(10px);
+}
+html.theme-light #galeria .va-img.opacity-100 {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: all 0.7s ease-out;
+}
+
+/* ==============================
+   🌙 OSCURO — intacto
+   ============================== */
+html:not(.theme-light) #galeria {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+  
+/* ==========================================
+   🦌 SECCIÓN DE CONTACTO
+   ========================================== */
+  /* ✨ Efecto de brillo + pulsación en hover */
+  .btn-enviar {
+    background: linear-gradient(
+      90deg,
+      var(--color-accent) 0%,
+      #ffdf70 50%,
+      var(--color-accent) 100%
+    );
+    background-size: 200% 100%;
+    animation: gradientMove 4s ease infinite;
+  }
+
+  .btn-enviar:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+    background-position: 100% 0;
+  }
+
+  .btn-enviar:active {
+    transform: scale(0.98);
+  }
+
+  @keyframes gradientMove {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+/* ==========================================
+   🦌 SECCIÓN DE CONTACTO — THEME LIGHT
+   ========================================== */
+
+html.theme-light #contacto {
+  background: linear-gradient(
+    180deg,
+    #dff5e6 0%,
+    #c7ebd6 35%,
+    #b1e2c4 70%,
+    #9ed8b2 100%
+  );
+  color: #0a2618;
+  position: relative;
+}
+
+html.theme-light #contacto > div:first-child {
+    background: linear-gradient(to bottom, rgba(0, 122, 82, 0.08), transparent);
+}
+
+/* 🏷️ Encabezado */
+html.theme-light #contacto h2 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+html.theme-light #contacto p {
+  color: rgba(20, 20, 20, 0.85);
+}
+/* ==========================================
+   🧾 FIX FORMULARIO CONTACTO — THEME LIGHT
+   ========================================== */
+
+/* Forzar override a las clases oscuras del formulario */
+html.theme-light #contacto #formulario-contacto {
+  background: linear-gradient(180deg, rgb(1 145 100 / 90%), rgb(0 173 126 / 90%)) !important;
+  border: 1px solid rgba(0, 64, 32, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  color: #062a18;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+}
+
+/* Inputs visibles sobre fondo claro */
+html.theme-light #contacto input,
+html.theme-light #contacto select,
+html.theme-light #contacto textarea {
+  background: rgba(255, 255, 255, 0.95);
+  color: #0d2b1a;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+html.theme-light #contacto input::placeholder,
+html.theme-light #contacto textarea::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Títulos y etiquetas más definidos */
+html.theme-light #contacto label {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+/* Texto dentro del formulario */
+html.theme-light #contacto p,
+html.theme-light #contacto strong {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Botón con más contraste sobre fondo claro */
+html.theme-light #contacto .btn-enviar {
+  background: linear-gradient(90deg, #ffd700, #fff1a0, #ffd700);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+html.theme-light #contacto .btn-enviar:hover {
+  background: linear-gradient(90deg, #fff5b7, #ffe980, #fff5b7);
+}
+
+/* Mapa y bloque derecho */
+html.theme-light #contacto .bg-black\/20 {
+  background: linear-gradient(180deg, rgb(1 145 100 / 90%), rgb(0 173 126 / 90%)) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+html.theme-light #contacto h3 {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 800;
+}
+
+html.theme-light #contacto .p-6 {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ==========================================
+   🦌 FOOTER — THEME LIGHT
+   ========================================== */
+
+html.theme-light footer {
+  background: linear-gradient(to bottom, #F2FAF7 0%, #DCEFE7 100%);
+  color: rgba(20, 20, 20, 0.9);
+  position: relative;
+  padding-bottom: 5rem;
+}
+
+
+/* ===============================
+   🦌 Logo y lema
+   =============================== */
+html.theme-light footer img {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+}
+html.theme-light footer p {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* ===============================
+   🧭 Navegación
+   =============================== */
+html.theme-light footer nav h3 {
+  color: #046d42;
+}
+html.theme-light footer nav ul li a {
+  color: #05321f;
+  transition: color 0.3s ease;
+}
+html.theme-light footer nav ul li a:hover {
+  color: #0a8d58;
+}
+
+/* =====================================
+   🎯 Subrayado animado en hover (Navbar)
+   ===================================== */
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.35s ease-in-out;
+  border-radius: 2px;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+html.theme-light .nav-link::after {
+  background: var(--color-secondary); /* para modo claro */
+}
+
+
+/* ===============================
+   📞 Contacto
+   =============================== */
+html.theme-light footer h3 {
+  color: #046d42;
+}
+html.theme-light footer ul li,
+html.theme-light footer ul li a {
+  color: #0b4025;
+}
+html.theme-light footer ul li a:hover {
+  color: #0a8d58;
+}
+
+/* Redes sociales */
+html.theme-light footer .w-9 {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+html.theme-light footer .w-9:hover {
+  background: linear-gradient(135deg, #0a8d58, #ffd700);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+html.theme-light footer .w-9 img {
+  filter: brightness(0) invert(0.2);
+}
+
+/* ===============================
+   ⚖️ Créditos
+   =============================== */
+html.theme-light footer div:last-child {
+  color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+}
+html.theme-light footer div:last-child a {
+  color: #046d42;
+  font-weight: 600;
+}
+html.theme-light footer div:last-child a:hover {
+  color: #0a8d58;
+  text-decoration: underline;
+}
