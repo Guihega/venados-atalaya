@@ -31,5 +31,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
+          protocol: ftp
           local-dir: ./dist/
-          server-dir: venados-atalaya/
+          server-dir: venados-atalaya/   # 👈 SOLO esto, sin "public_html/"
+          log-level: verbose
+          dry-run: false
