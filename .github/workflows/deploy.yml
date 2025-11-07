@@ -33,6 +33,6 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./dist/
-          server-dir: venados-atalaya/   # 👈 SOLO esto, sin "public_html/"
+          server-dir: domains/mhegasdev.com.mx/public_html/venados-atalaya/
           log-level: verbose
           dry-run: false
