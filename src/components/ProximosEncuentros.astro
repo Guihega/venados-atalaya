@@ -6,7 +6,7 @@
  * - Filtrado y orden por fecha
  * - Diseño coherente con el sitio Venados
  */
-
+import { withBase } from "@/utils/withBase";
 const eventos = [
   {
     id: "copa-sur",
@@ -17,7 +17,7 @@ const eventos = [
     home: "Venados Atalaya",
     away: "Lobos del Sur",
     score: "3–1",
-    cover: "/img/eventos/copa-sur.webp",
+    cover: "img/eventos/copa-sur.webp",
     note: "Gran encuentro clasificatorio con dominio táctico de Venados Atalaya."
   },
   {
@@ -29,7 +29,7 @@ const eventos = [
     home: "Venados Atalaya",
     away: "Atlético Centro",
     score: "",
-    cover: "/img/eventos/liga-estatal.webp",
+    cover: "img/eventos/liga-estatal.webp",
     note: "Partido de preparación con rotación táctica."
   },
   {
@@ -41,7 +41,7 @@ const eventos = [
     home: "Venados Atalaya sub-17",
     away: "Academia Norte",
     score: "",
-    cover: "/img/eventos/torneo-juvenil.webp",
+    cover: "img/eventos/torneo-juvenil.webp",
     note: "Participación destacada en zona centro."
   },
   {
@@ -53,7 +53,7 @@ const eventos = [
     home: "Venados Atalaya",
     away: "Águilas de Tehuacán",
     score: "",
-    cover: "/img/eventos/amistoso-noviembre.webp",
+    cover: "img/eventos/amistoso-noviembre.webp",
     note: "Amistoso preparatorio antes del cierre de temporada."
   }
 ];

@@ -1,3 +1,6 @@
+---
+import { withBase } from "@/utils/withBase";
+---
 <section
   id="programas"
   class="relative py-20 bg-[var(--color-dark)] text-[var(--color-light)] overflow-hidden"
@@ -25,7 +28,7 @@
       class="group relative bg-gradient-to-b from-[var(--color-primary)]/90 to-[var(--color-secondary)]/80 rounded-xl shadow-lg overflow-hidden hover:scale-[1.03] transition-transform duration-500"
     >
       <img
-        src="/img/programa-infantil.webp"
+        src="img/programa-infantil.webp"
         loading="lazy"
         alt="Programa Infantil"
         class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-300"
@@ -49,7 +52,7 @@
       class="group relative bg-gradient-to-b from-[var(--color-primary)]/90 to-[var(--color-secondary)]/80 rounded-xl shadow-lg overflow-hidden hover:scale-[1.03] transition-transform duration-500"
     >
       <img
-        src="/img/programa-juvenil.webp"
+        src={withBase("img/programa-juvenil.webp")}
         loading="lazy"
         alt="Programa Juvenil"
         class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-300"
@@ -73,7 +76,7 @@
       class="group relative bg-gradient-to-b from-[var(--color-primary)]/90 to-[var(--color-secondary)]/80 rounded-xl shadow-lg overflow-hidden hover:scale-[1.03] transition-transform duration-500"
     >
       <img
-        src="/img/programa-avanzado.webp"
+        src={withBase("img/programa-avanzado.webp")}
         loading="lazy"
         alt="Programa Avanzado"
         class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-300"

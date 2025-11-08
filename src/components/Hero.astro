@@ -1,3 +1,6 @@
+---
+import { withBase } from "@/utils/withBase";
+---
 <section
   class="relative min-h-[90vh] md:h-[100vh] w-full flex flex-col justify-center items-center text-center overflow-hidden font-title"
 >
@@ -9,10 +12,10 @@
     loop
     playsinline
     preload="metadata"
-    poster="/img/hero-fallback.webp"
+    poster="img/hero-fallback.webp"
     aria-label="Jugadores entrenando en campo de fútbol"
   >
-    <source src="/video/hero.mp4" type="video/mp4" />
+    <source src={withBase("video/hero.mp4")} type="video/mp4" />
   </video>
 
   <!-- 🖤 CAPA DEGRADADA -->

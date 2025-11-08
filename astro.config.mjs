@@ -1,15 +1,29 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-export default defineConfig({
-  site: 'https://mhegasdev.com.mx',
-  base: '/venados-atalaya/', // 👈 Muy importante: barra inicial y final
-  output: 'static',
-  outDir: './dist',
+// =====================================================
+// 🌐 Configuración automática por entorno
+// =====================================================
+// Si ejecutas "npm run dev" → base = "/"  (modo local)
+// Si haces "npm run build" o "deploy" → base = "/venados-atalaya/"
+const isProd = process.env.NODE_ENV === "production";
 
-  // ⚙️ Ajuste extra para Vite: asegura que los assets (CSS/JS/IMGS) respeten la subcarpeta
+export default defineConfig({
+  site: "https://mhegasdev.com.mx",
+  base: isProd ? "/venados-atalaya/" : "/", // ✅ Cambia automáticamente según entorno
+  output: "static",
+  outDir: "./dist",
+
   vite: {
-    base: '/venados-atalaya/',
+    // ✅ Asegura rutas relativas correctas en subcarpetas
+    build: {
+      assetsDir: "_astro",
+    },
+    // ✅ Soporte para importaciones absolutas desde src/
+    resolve: {
+      alias: {
+        "@": new URL("./src", import.meta.url).pathname,
+      },
+    },
   },
 });

@@ -1,3 +1,6 @@
+---
+import { withBase } from "@/utils/withBase";
+---
 <section id="calendario" class="relative py-24 bg-[var(--color-dark)] text-[var(--color-light)] overflow-hidden" aria-labelledby="titulo-calendario">
   <!-- 🌫️ Degradado superior -->
   <div class="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/50 to-transparent"></div>
@@ -61,7 +64,7 @@
     "home": "Venados Atalaya",
     "away": "Lobos del Sur",
     "score": "3–1",
-    "cover": "/img/eventos/copa-sur.jpg",
+    "cover": "img/eventos/copa-sur.jpg",
     "note": "Gran encuentro clasificatorio con dominio táctico de Venados Atalaya."
   },
   {
@@ -73,7 +76,7 @@
     "home": "Venados Atalaya",
     "away": "Atlético Centro",
     "score": "",
-    "cover": "/img/eventos/liga-estatal.jpg",
+    "cover": "img/eventos/liga-estatal.jpg",
     "note": "Partido de preparación con rotación táctica."
   },
   {
@@ -85,7 +88,7 @@
     "home": "Venados Atalaya sub-17",
     "away": "Academia Norte",
     "score": "",
-    "cover": "/img/eventos/torneo-juvenil.jpg",
+    "cover": "img/eventos/torneo-juvenil.jpg",
     "note": "Participación destacada en zona centro."
   },
   {
@@ -97,7 +100,7 @@
     "home": "Venados Sub-15",
     "away": "Academia Los Halcones",
     "score": "2–1",
-    "cover": "/img/eventos/amistoso-matutino.jpg",
+    "cover": "img/eventos/amistoso-matutino.jpg",
     "note": "Encuentro amistoso con la categoría sub-15, excelente desempeño defensivo."
   },
   {
@@ -109,7 +112,7 @@
     "home": "Venados Atalaya A",
     "away": "Venados Atalaya B",
     "score": "",
-    "cover": "/img/eventos/interescuadras.jpg",
+    "cover": "img/eventos/interescuadras.jpg",
     "note": "Juego de entrenamiento interno entre equipos principales."
   },
   {
@@ -121,7 +124,7 @@
     "home": "Venados Atalaya",
     "away": "Águilas de Tehuacán",
     "score": "",
-    "cover": "/img/eventos/amistoso-noviembre.jpg",
+    "cover": "img/eventos/amistoso-noviembre.jpg",
     "note": "Amistoso preparatorio antes del cierre de temporada."
   }
 ]
@@ -293,7 +296,7 @@
 
       function renderDetail(e){
         if(!e){ detail.classList.add("hidden"); return; }
-        cover.src=e.cover||"/img/eventos/default.jpg";
+        cover.src=e.cover||"img/eventos/default.jpg";
         cover.alt=e.title||"Evento deportivo";
         title.textContent=e.title||"Evento";
         meta.textContent=`${e.date} — ${e.venue||""} · ${e.time||""}`;

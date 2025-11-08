@@ -7,6 +7,7 @@
  * - Animación fade + slide
  * - Sin dependencias externas
  */
+ import { withBase } from "@/utils/withBase";
 ---
 
 <section id="galeria" class="relative py-20 bg-[var(--color-dark)] text-[var(--color-light)] overflow-hidden">
@@ -29,14 +30,14 @@
 >
   {Array.from({ length: 6 }).map((_, i) => (
     <a
-      href={`/img/galeria/${i + 1}-thumb.webp`}
+      href={`img/galeria/${i + 1}-thumb.webp`}
       class="va-img group block overflow-hidden rounded-xl relative aspect-[4/3]"
       data-caption={`Imagen ${i + 1}`}
       target="_blank"
     >
       <img
-        src={`/img/galeria/${i + 1}-thumb.webp`}
-        data-full={`/img/galeria/${i + 1}-thumb.webp`}
+        src={`img/galeria/${i + 1}-thumb.webp`}
+        data-full={`img/galeria/${i + 1}-thumb.webp`}
         alt={`Imagen ${i + 1} Venados Atalaya`}
         loading="lazy"
         decoding="async"

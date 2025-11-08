@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write        # permite comentar en el commit
+  pull-requests: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,7 +20,7 @@ jobs:
       - name: 🧰 Instalar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: 📦 Instalar dependencias
         run: npm ci
@@ -37,4 +41,40 @@ jobs:
           protocol: ftp
           local-dir: ./dist/
           server-dir: venados-atalaya/
+          exclude: |
+            **/.git*
+            **/.github*
+            **/node_modules/**
+            **/package*.json
+            **/astro.config.*
+            **/tsconfig.*
+            **/README.md
           log-level: verbose
+
+      - name: ⏳ Esperar 10 segundos antes de validar
+        run: sleep 10
+
+      - name: ✅ Verificar que el sitio está en línea
+        id: check_site
+        run: |
+          URL="https://mhegasdev.com.mx/venados-atalaya/index.html"
+          echo "Comprobando disponibilidad de $URL ..."
+          STATUS=$(curl -o /dev/null -s -w "%{http_code}\n" "$URL")
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+
+          if [ "$STATUS" = "200" ]; then
+            echo "✅ Sitio en línea (HTTP $STATUS)"
+          else
+            echo "❌ Error: respuesta HTTP $STATUS"
+            exit 1
+          fi
+
+      - name: 💬 Publicar comentario en el commit
+        if: always()
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: "🚀 **Deploy Venados Atalaya**"
+          message: |
+            ${{ steps.check_site.outputs.status == '200' && '✅ **Deploy exitoso** — el sitio está en línea.  
+            🌐 [Abrir sitio](https://mhegasdev.com.mx/venados-atalaya/)' || '❌ **Error en el deploy** — el sitio no respondió correctamente.  
+            Verifica los logs en [GitHub Actions](https://github.com/${{ github.repository }}/actions).' }}
