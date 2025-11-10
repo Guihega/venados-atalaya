@@ -1,5 +1,6 @@
 ---
-import { withBase } from "@/utils/withBase";
+import programas from "@/data/programas.json";
+const programasJSON = JSON.stringify(programas);
 ---
 <section
   id="programas"
@@ -52,7 +53,7 @@ import { withBase } from "@/utils/withBase";
       class="group relative bg-gradient-to-b from-[var(--color-primary)]/90 to-[var(--color-secondary)]/80 rounded-xl shadow-lg overflow-hidden hover:scale-[1.03] transition-transform duration-500"
     >
       <img
-        src={withBase("img/programa-juvenil.webp")}
+        src={"img/programa-juvenil.webp"}
         loading="lazy"
         alt="Programa Juvenil"
         class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-300"
@@ -76,7 +77,7 @@ import { withBase } from "@/utils/withBase";
       class="group relative bg-gradient-to-b from-[var(--color-primary)]/90 to-[var(--color-secondary)]/80 rounded-xl shadow-lg overflow-hidden hover:scale-[1.03] transition-transform duration-500"
     >
       <img
-        src={withBase("img/programa-avanzado.webp")}
+        src={"img/programa-avanzado.webp"}
         loading="lazy"
         alt="Programa Avanzado"
         class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-300"
@@ -212,76 +213,21 @@ import { withBase } from "@/utils/withBase";
   </div>
 </section>
 
+<!-- ✅ JSON embebido literalmente -->
+<script type="application/json" id="programas-data" set:html={programasJSON}></script>
+
 <!-- ✨ SCRIPT OPTIMIZADO -->
 <script is:inline>
-  // ===============================
-  // ⚽ Datos de los programas
-  // ===============================
-  const programas = {
-    infantil: {
-      titulo: "Categoría Infantil",
-      desc: "Ideal para niños y niñas de 5 a 9 años. Se centra en desarrollar coordinación, disciplina, motricidad y amor por el fútbol mediante dinámicas lúdicas y entrenamiento divertido.",
-      beneficios: [
-        "⚽ Iniciación técnica con ejercicios dinámicos.",
-        "🏃 Desarrollo de coordinación y reflejos.",
-        "🤝 Trabajo en equipo desde temprana edad.",
-        "🎯 Juegos enfocados en concentración y respeto.",
-      ],
-      valores: ["Disciplina", "Alegría", "Respeto", "Cooperación"],
-      galeria: [
-        withBase("img/infantil.webp"),
-        withBase("img/infantil1.webp"),
-        withBase("img/infantil2.webp"),
-      ],
-      extra: `
-        📅 Lunes a Viernes — 4:00 PM a 6:00 PM<br>
-        📍 Cancha Atalaya Infantil<br>
-        👶 Nivel Inicial y Principiante
-      `,
-    },
-    juvenil: {
-      titulo: "Categoría Juvenil",
-      desc: "Dirigida a jóvenes de 10 a 14 años que buscan perfeccionar su técnica y táctica. Enfocamos los entrenamientos en disciplina, visión de juego y desarrollo físico controlado.",
-      beneficios: [
-        "🎯 Perfeccionamiento técnico y táctico.",
-        "💪 Fortalecimiento físico progresivo.",
-        "🧠 Toma de decisiones en juego real.",
-        "🦶 Entrenamientos específicos por posición.",
-      ],
-      valores: ["Liderazgo", "Esfuerzo", "Responsabilidad", "Trabajo en equipo"],
-      galeria: [
-        withBase("img/juvenil.webp"),
-        withBase("img/juvenil1.webp"),
-        withBase("img/juvenil2.webp"),
-      ],
-      extra: `
-        📅 Martes a Sábado — 5:00 PM a 7:00 PM<br>
-        📍 Campo Norte Atalaya<br>
-        ⚽ Nivel Intermedio y Avanzado
-      `,
-    },
-    avanzado: {
-      titulo: "Categoría Avanzada",
-      desc: "Programa de alto rendimiento para jugadores de 15 años en adelante. Entrenamientos intensivos con enfoque competitivo, preparación táctica, técnica y mental para visorias y torneos.",
-      beneficios: [
-        "🔥 Entrenamiento de alto rendimiento.",
-        "🏋️ Preparación física personalizada.",
-        "🧩 Análisis táctico y estratégico.",
-        "🥇 Plan de competencia y visorias.",
-      ],
-      valores: ["Compromiso", "Perseverancia", "Competitividad", "Superación"],
-      galeria: [
-        withBase("img/avanzado.webp"),
-        withBase("img/avanzado1.webp"),
-        withBase("img/avanzado2.webp"),
-      ],
-      extra: `
-        📅 Lunes, Miércoles y Viernes — 6:00 PM a 8:00 PM<br>
-        📍 Campo Principal Atalaya<br>
-        🦌 Nivel Alto Rendimiento / Competitivo
-      `,
-    },
-  };
+  
+  const dataTag = document.getElementById("programas-data");
+  let programas = {};
+
+  try {
+    programas = JSON.parse(dataTag.textContent.trim());
+    console.log("✅ Programas cargados correctamente:", programas);
+  } catch (err) {
+    console.error("❌ Error al parsear los programas:", err, dataTag.textContent);
+  }
 
   // ===============================
   // ⚙️ Lógica del modal

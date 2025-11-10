@@ -1,0 +1,53 @@
+{
+  "infantil": {
+    "titulo": "Categoría Infantil",
+    "desc": "Ideal para niños y niñas de 5 a 9 años.",
+    "beneficios": [
+      "Iniciación técnica con ejercicios dinámicos.",
+      "Desarrollo de coordinación y reflejos.",
+      "Trabajo en equipo desde temprana edad.",
+      "Juegos enfocados en concentración y respeto."
+    ],
+    "valores": ["Disciplina", "Alegría", "Respeto", "Cooperación"],
+    "galeria": [
+      "/img/infantil.webp",
+      "/img/infantil1.webp",
+      "/img/infantil2.webp"
+    ],
+    "extra": "Lunes a Viernes — 4:00 PM a 6:00 PM<br>Cancha Atalaya Infantil<br>Nivel Inicial y Principiante"
+  },
+  "juvenil": {
+    "titulo": "Categoría Juvenil",
+    "desc": "Dirigida a jóvenes de 10 a 14 años.",
+    "beneficios": [
+      "Perfeccionamiento técnico y táctico.",
+      "Fortalecimiento físico progresivo.",
+      "Toma de decisiones en juego real.",
+      "Entrenamientos específicos por posición."
+    ],
+    "valores": ["Liderazgo", "Esfuerzo", "Responsabilidad", "Trabajo en equipo"],
+    "galeria": [
+      "/img/juvenil.webp",
+      "/img/juvenil1.webp",
+      "/img/juvenil2.webp"
+    ],
+    "extra": "Martes a Sábado — 5:00 PM a 7:00 PM<br>Campo Norte Atalaya<br>Nivel Intermedio y Avanzado"
+  },
+  "avanzado": {
+    "titulo": "Categoría Avanzada",
+    "desc": "Programa de alto rendimiento y competencia profesional.",
+    "beneficios": [
+      "Entrenamiento de alto rendimiento.",
+      "Preparación física personalizada.",
+      "Análisis táctico y estratégico.",
+      "Plan de competencia y visorias."
+    ],
+    "valores": ["Compromiso", "Perseverancia", "Competitividad", "Superación"],
+    "galeria": [
+      "/img/avanzado.webp",
+      "/img/avanzado1.webp",
+      "/img/avanzado2.webp"
+    ],
+    "extra": "Lunes, Miércoles y Viernes — 6:00 PM a 8:00 PM<br>Campo Principal Atalaya<br>Nivel Alto Rendimiento / Competitivo"
+  }
+}

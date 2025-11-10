@@ -1,0 +1,74 @@
+[
+  {
+    "id": "copa-sur",
+    "date": "2025-03-15",
+    "title": "Copa Regional del Sur",
+    "venue": "Estadio Tehuacán",
+    "time": "18:00",
+    "home": "Venados Atalaya",
+    "away": "Lobos del Sur",
+    "score": "3–1",
+    "cover": "img/eventos/copa-sur.jpg",
+    "note": "Gran encuentro clasificatorio con dominio táctico de Venados Atalaya."
+  },
+  {
+    "id": "liga-estatal",
+    "date": "2025-06-17",
+    "title": "Liga Estatal 2025",
+    "venue": "Huixcolotla, Puebla",
+    "time": "17:30",
+    "home": "Venados Atalaya",
+    "away": "Atlético Centro",
+    "score": "",
+    "cover": "img/eventos/liga-estatal.jpg",
+    "note": "Partido de preparación con rotación táctica."
+  },
+  {
+    "id": "torneo-nacional",
+    "date": "2025-04-12",
+    "title": "Torneo Nacional Juvenil",
+    "venue": "Puebla Capital",
+    "time": "16:00",
+    "home": "Venados Atalaya sub-17",
+    "away": "Academia Norte",
+    "score": "",
+    "cover": "img/eventos/torneo-juvenil.jpg",
+    "note": "Participación destacada en zona centro."
+  },
+  {
+    "id": "amistoso-noviembre-a",
+    "date": "2025-11-09",
+    "title": "Amistoso Matutino Sub-15",
+    "venue": "Campo Venados Atalaya",
+    "time": "09:00",
+    "home": "Venados Sub-15",
+    "away": "Academia Los Halcones",
+    "score": "2–1",
+    "cover": "img/eventos/amistoso-matutino.jpg",
+    "note": "Encuentro amistoso con la categoría sub-15, excelente desempeño defensivo."
+  },
+  {
+    "id": "amistoso-noviembre-b",
+    "date": "2025-11-09",
+    "title": "Amistoso Interescuadras",
+    "venue": "Campo 2 Atalaya",
+    "time": "12:00",
+    "home": "Venados Atalaya A",
+    "away": "Venados Atalaya B",
+    "score": "",
+    "cover": "img/eventos/interescuadras.jpg",
+    "note": "Juego de entrenamiento interno entre equipos principales."
+  },
+  {
+    "id": "amistoso-noviembre-c",
+    "date": "2025-11-09",
+    "title": "Partido Amistoso de Noviembre",
+    "venue": "Campo Venados Atalaya",
+    "time": "17:00",
+    "home": "Venados Atalaya",
+    "away": "Águilas de Tehuacán",
+    "score": "",
+    "cover": "img/eventos/amistoso-noviembre.jpg",
+    "note": "Amistoso preparatorio antes del cierre de temporada."
+  }
+]
